@@ -16,16 +16,10 @@ class App extends React.Component {
   }
 
   handleAddnewTicket = newTicket => {
-    console.log(newTicket);
-    console.log('orig masterTicketList =', this.state.masterTicketList);
-    
     let newMasterTicketList = this.state.masterTicketList.slice();
     console.log("newMasterTicketList after slice = ",newMasterTicketList);
-    
     newMasterTicketList.push(newTicket);
-    this.setState({masterTicketList: newMasterTicketList}, ()=>{console.log(this.state.masterTicketList);});
-    
-    
+    this.setState({masterTicketList: newMasterTicketList});
   }
 
   render(){

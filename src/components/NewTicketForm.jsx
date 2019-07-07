@@ -1,4 +1,5 @@
 import React from 'react';
+import { v4 } from 'uuid';
 
 function NewTicketForm(props){
   let _names = null;
@@ -7,7 +8,7 @@ function NewTicketForm(props){
 
   function handleSubmission(event) {
     event.preventDefault();
-    props.onNewTicketCreation({names: _names.value, location: _location.value, issue: _issue.value});
+    props.onNewTicketCreation({names: _names.value, location: _location.value, issue: _issue.value, id: v4()});
     _names.value = '';
     _location.value = '';
     _issue.value = '';
