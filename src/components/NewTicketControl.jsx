@@ -11,14 +11,13 @@ export default class extends React.Component {
     }
   }
 
-  // handleClick = () => {
-  //   this.setState({formVisible: true});
-  //   console.log('formVisible status = ' + this.state.formVisible);
-  // }
+  handleConfirmation = () => {
+    this.setState({formVisible: true});
+  }
 
   render(){
     return(
-      this.state.formVisible ? <NewTicketForm/> : <ConfirmationQuestions/>
+      this.state.formVisible ? <NewTicketForm onNewTicketCreation={this.props.onNewTicketCreation}/> : <ConfirmationQuestions onHandleConfirmation = {this.handleConfirmation}/>
     )
   }
 }
