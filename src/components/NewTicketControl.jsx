@@ -17,7 +17,7 @@ export default class extends React.Component {
 
   render(){
     return(
-      this.state.formVisible ? <NewTicketForm onNewTicketCreation={this.props.onNewTicketCreation}/> : <ConfirmationQuestions onHandleConfirmation = {this.handleConfirmation}/>
+      this.state.formVisible ? <NewTicketForm/> : <ConfirmationQuestions onHandleConfirmation = {this.handleConfirmation}/>
     )
   }
 }

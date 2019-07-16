@@ -4,37 +4,44 @@ import Header from './Header';
 import TicketList from './TicketList';
 import NewTicketControl from './components/NewTicketControl'
 // import Error404 from './Error404';
-import { Switch, Route, HashRouter } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux'
 
 class App extends React.Component {
 
   constructor(props) {
     super(props);
+    console.log(props)
     this.state = {
-      masterTicketList: []
+      // masterTicketList: { stuff: 'stuff'},
+      selectedTicket: null
     }
   }
-
-  handleAddnewTicket = newTicket => {
-    let newMasterTicketList = this.state.masterTicketList.slice();
-    console.log("newMasterTicketList after slice = ",newMasterTicketList);
-    newMasterTicketList.push(newTicket);
-    this.setState({masterTicketList: newMasterTicketList});
-  }
+  
+  // handleAddnewTicket = newTicket => {
+  //   let newMasterTicketList = this.state.masterTicketList.slice();
+  //   console.log("newMasterTicketList after slice = ",newMasterTicketList);
+  //   newMasterTicketList.push(newTicket);
+  //   this.setState({masterTicketList: newMasterTicketList});
+  // }
 
   render(){
+    // console.log(props)
     return (
       <div>
-        <HashRouter>
-          <Header/>
-          <Switch>
-            <Route exact path='/' render={()=><TicketList ticketList={this.state.masterTicketList}/>} />
-            <Route path='/newticket' render={ ()=><NewTicketControl onNewTicketCreation={this.handleAddnewTicket}/>} />
-          </Switch>
-        </HashRouter>
+        <Header/>
+        <Switch>
+          <Route exact path='/' render={()=><TicketList ticketList={this.props.masterTicketList}/>} />
+          <Route path='/newticket' render={ ()=><NewTicketControl/>} />
+        </Switch>
       </div>
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    masterTicketList: state
+  }
+}
 
-export default App;
+export default withRouter(connect(mapStateToProps)(App));
